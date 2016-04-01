@@ -20,5 +20,43 @@ struct node {
 };
 
 struct node * insertAtEveryKthNode(struct node *head, int K) {
+	if (K > 0)
+	{
+		struct node* temp;
+		temp = head;
+		int count = 0;
+		for (temp = head; temp != NULL; temp = temp->next)
+		{
+			count++;
+		}
+		if (K > count)
+		{
+			return head;
+		}
+		else
+		{
+			
+			struct node* pre=head;
+			pre = head;
+			
+			int c = 0;
+			for (temp = head; temp != NULL; temp = temp->next)
+			{
+				c++;
+				//insertAtEveryKthNode(createList(12345), 2), 1223425
+				if (c==K)
+				{
+					struct node* temp1 = (struct node*)malloc(sizeof(struct node));
+					temp1->num = K;
+					temp1->next = temp->next;
+					temp->next = temp1;
+					c = -1;
+				}
+				
+			}
+			return head;
+		}
+		
+	}
 	return NULL;
 }
