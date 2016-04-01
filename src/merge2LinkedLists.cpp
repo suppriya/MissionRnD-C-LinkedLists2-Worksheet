@@ -17,7 +17,44 @@ struct node {
 	int num;
 	struct node *next;
 };
-
+struct node* Sorting(struct node* , struct node* );
 struct node * merge2LinkedLists(struct node *head1, struct node *head2) {
-	return NULL;
+	struct node* temp1 = head1;
+	struct node* temp2 = head2;
+	if ((temp1 == NULL) && (temp2 != NULL))
+	{
+		return head2;
+	}
+    else if ((temp1 != NULL) && (temp2 == NULL))
+	{
+		return head1;
+	}                                                                 
+	else if ((temp1 != NULL) && (temp2!=NULL))
+	{
+		
+		Sorting(temp1, temp2);
+	
+	}
+	else return NULL;
+   }
+
+ struct node* Sorting(struct node* temp1, struct node* temp2)
+{
+	struct node* ans = NULL;
+     if (temp1 == NULL)
+		return(temp2);
+	else if (temp2 == NULL)
+		return(temp1);
+	 if (temp1->num <= temp2->num)
+	{
+		ans = temp1;
+		ans->next = Sorting(temp1->next, temp2);
+	}
+	else
+	{
+		ans = temp2;
+		ans->next = Sorting(temp1, temp2->next);
+	}
+	return ans;
 }
+
